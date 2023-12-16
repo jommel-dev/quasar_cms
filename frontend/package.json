@@ -1,0 +1,51 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "description": "An Surgical record report generator using Quasar framework app",
+  "productName": "School Site",
+  "author": "Futuristics IT Solutions",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/interaction": "^6.1.8",
+    "@fullcalendar/vue3": "^6.1.8",
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@quasar/extras": "^1.15.10",
+    "@vue/devtools": "^5.3.4",
+    "autocompleter": "^6.1.2",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.1",
+    "pdf-lib": "^1.17.1",
+    "quasar": "^2.11.5",
+    "vue": "^3.2.29",
+    "vue-i18n": "^9.0.0",
+    "vue-pdf": "^4.3.0",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.1"
+  },
+  "devDependencies": {
+    "@quasar/app": "^3.3.3"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
