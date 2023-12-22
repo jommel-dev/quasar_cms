@@ -27,24 +27,9 @@
         </q-list>
       </q-toolbar>
       <q-toolbar class="bg-green-10" inset>
-        <q-tabs v-model="menuSelected">
-          <q-tab name="home" label="Home" />
-          <q-tab name="about" label="About" />
-          <q-tab name="classes" label="Classes" />
-          <q-tab name="teacher" label="Teachers" />
-          <q-tab name="contact" label="Contact" />
-        </q-tabs>
-        <q-space />
-
-        <q-btn 
-          flat
-          color="white"
-          label="Login" 
-        />
+        
       </q-toolbar>
     </q-header>
-
-
 
     <q-page-container class="bg-red-10 text-white">
       <router-view />
@@ -58,39 +43,20 @@ import jwt_decode from 'jwt-decode'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: 'AdminLayout',
   data(){
     return {
       menuSelected: 'home',
-      contacts: [
-        {
-          icon: 'contact_phone',
-          iconColor: 'orange',
-          title: 'Call',
-          value: '(0987) 654 3214',
-        },
-        {
-          icon: 'schedule',
-          iconColor: 'blue',
-          title: 'Working Time',
-          value: 'Mon - Fri 7:00 AM - 6:00 PM',
-        },
-        {
-          icon: 'location_on',
-          iconColor: 'red',
-          title: 'Address',
-          value: 'Lorem Ipsum Address Sample Test',
-        },
-      ]
+      
     }
   },
   created(){
     let profile = SessionStorage.getItem('userDataLogin');
     
     if(profile || profile !== null){
-      this.$router.push('/admin/dashboard')
+      this.$router.push('/dashboard')
     } else {
-      this.$router.push('/')
+      this.$router.push('/admin')
     }
   }
 })

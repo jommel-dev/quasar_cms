@@ -122,7 +122,7 @@ export default{
                     LocalStorage.set('userData', data.jwt);
                     // Session Login with Expiration
                     SessionStorage.set('userDataLogin', data.jwt);
-                    this.$router.push('/dashboard')
+                    this.$router.push('/admin/dashboard')
                 } else {
                     this.$q.notify({
                         color: 'negative',

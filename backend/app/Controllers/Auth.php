@@ -57,7 +57,6 @@ class Auth extends BaseController
                 // $userModules = $user[0]['userType'] == 0 ? ['101', '103', '104', '105'] : ['101', '102'];
 
                 $user->userType = $this->miscModel->getUserType($user->userType);
-                $user->branch = $this->miscModel->getBranch($user->branchId);
                 // $userModules =;
                 // $user[0]['usersMod'] = $userModules;
                 // print_r($user);
