@@ -42,59 +42,6 @@ $routes->group('mlrs/api/v1', function($routes){
 	}); 
 
 
-	// Client and Patient API
-	$routes->group('client', function($routes){
-		$routes->post('generate', 'Client::registerClient');
-		$routes->get('clientList', 'Client::getAllClientList');
-		$routes->post('get/patient/list', 'Client::getClientPatientList');
-	});
-
-	// Patient Group
-	$routes->group('patient', function($routes){
-		$routes->post('add/new', 'Client::registerPet');
-		$routes->post('add/schedule', 'Client::addSchedule');
-		$routes->post('add/checkup', 'Client::addCheckup');
-		$routes->post('details', 'Client::getPatientDetails');
-		$routes->post('get/schedule', 'Client::getPatientSchedule');
-		$routes->post('get/checkup', 'Client::getPatientCheckups');
-		$routes->post('get/wellness', 'Client::getPatientWellnes');
-		$routes->get('details/schedule/(:num)', 'Client::getPatientScheduleDetail/$1');
-	});
-
-	// Product Group
-	$routes->group('product', function($routes){
-		$routes->post('add/new', 'InventoryController::addProduct');
-		$routes->post('update/details', 'InventoryController::updateProduct');
-		$routes->post('get/products', 'InventoryController::getProductList');
-		$routes->post('get/detail', 'InventoryController::getProductDetail');
-	});
-
-	// Stock Group
-	$routes->group('stock', function($routes){
-		$routes->post('add/new', 'InventoryController::addStock');
-		$routes->post('get/stocks', 'InventoryController::getStockList');
-		// Stock specs
-		$routes->post('get/categories', 'InventoryController::getCategories');
-		$routes->post('get/units', 'InventoryController::getUnits');
-	});
-
-	// Invoice Group
-	$routes->group('invoice', function($routes){
-		$routes->post('create', 'InvoiceController::createInvoice');
-		$routes->post('update', 'InvoiceController::updateInvoice');
-		$routes->post('create/booking', 'InvoiceController::createBookingInvoice');
-		$routes->post('fetch/byId', 'InvoiceController::getInvoiceDetails');
-		$routes->get('fetch/list', 'InvoiceController::fetchInvoice');
-	});
-
-	// Generate PDF's and Reports
-	$routes->group('generate', function($routes){
-		$routes->post('invoice', 'Generate::createInvoice');
-		$routes->get('print/invoice/(:any)', 'Generate::generateInvoicePdf/$1');
-	});
-
-
-
 	// All Users mmodule
 	$routes->group('users', function($routes){
 		$routes->post('create', 'Users::registerUser');
@@ -107,44 +54,15 @@ $routes->group('mlrs/api/v1', function($routes){
 	});
 
 
-	// Distribution Processflow 
-	$routes->group('processflow', function($routes){
-		$routes->post('getStatus', 'ProcessFlow::getProcessStatus');
-		$routes->post('updateStatus', 'ProcessFlow::updateProcessStatus');
-		$routes->post('preEncodeStatus', 'ProcessFlow::updatePreProcessStatus');
-		$routes->post('updateStatusMultiple', 'ProcessFlow::updateProcessStatusMultiple');
-	});
-	
-	// Dashboard
-	$routes->group('dashboard', function($routes){
-		$routes->get('getScheduleList', 'DashboardController::fetchScheduleList');
-		$routes->get('getDashboard', 'DashboardController::fetchDashboard');
+	// Announcement mmodule
+	$routes->group('announcement', function($routes){
+		$routes->post('create', 'Announcement::saveAnnouncement');
+		$routes->post('update', 'Users::registerUser');
+		$routes->post('delete', 'Users::registerUser');
+		$routes->get('getList', 'Announcement::getAnnouncementList');
+		$routes->get('public/getList', 'Announcement::getAnnouncementListPublic');
 	});
 
-
-	// Mobile Application
-	$routes->group('mobile', function($routes){
-
-		$routes->post('sync/data', 'MobileController::syncAgentData'); 
-		$routes->post('client/list', 'MobileController::agentClientList');
-		$routes->post('get/photo', 'MobileController::agentClientPhoto');
-		$routes->post('get/booking', 'MobileController::agentClientBooking');
-		$routes->post('agent/callSummary', 'MobileController::agentCallSummaryList');
-
-		// Mobile Fetch Updated Products
-		$routes->get('fetch/product/list', 'MobileController::migrateProductsToMobile');
-
-		// for Clients
-		$routes->get('fetch/client/list', 'MobileController::clientList');
-		$routes->post('fetch/client/agent', 'MobileController::agentIdClientList');
-		$routes->get('fetch/client/admin', 'MobileController::adminClientList');
-		$routes->post('client/migrate', 'MobileController::migrateClient');
-		$routes->post('client/update', 'MobileController::updateClient');
-
-		// For Product
-		$routes->post('product/migrate', 'MobileController::migrateProducts');
-		$routes->post('product/update', 'MobileController::updateProductList');
-	});
 
 
 });

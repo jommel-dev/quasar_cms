@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FillForm from '../components/Philhealth/Index.vue';
+import FillForm from '../components/Announcement/Index.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
