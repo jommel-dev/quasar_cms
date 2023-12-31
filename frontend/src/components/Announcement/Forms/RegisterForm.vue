@@ -62,23 +62,33 @@ export default{
                 tags: "",
                 description: "",
                 title: "",
+                type: "",
                 createdBy: "",
             },
             subjects: [
                 {
                     label:"Enrollment",
                     value: "Enrollment",
-                    icon: "edit_calendar"
+                    icon: "edit_calendar",
+                    type: 1
                 },
                 {
                     label:"Announcement",
                     value: "Announcement",
-                    icon: "campaign"
+                    icon: "campaign",
+                    type: 1
                 },
                 {
                     label:"Notice",
                     value: "Notice",
-                    icon: "notification_important"
+                    icon: "notification_important",
+                    type: 1
+                },
+                {
+                    label:"Program",
+                    value: "Program",
+                    icon: "local_library",
+                    type: 2
                 },
             ]
         }
@@ -120,6 +130,7 @@ export default{
                 tags: "",
                 description: "",
                 title: "",
+                type: "",
                 createdBy: "",
             }
         },

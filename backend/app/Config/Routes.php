@@ -62,6 +62,10 @@ $routes->group('mlrs/api/v1', function($routes){
 		$routes->get('getList', 'Announcement::getAnnouncementList');
 		$routes->get('public/getList', 'Announcement::getAnnouncementListPublic');
 	});
+	// Program mmodule
+	$routes->group('program', function($routes){
+		$routes->get('public/getList', 'Announcement::getProgramListPublic');
+	});
 
 
 

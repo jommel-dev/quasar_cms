@@ -6,7 +6,8 @@
         <q-avatar size="xl">
           <img src="/imgs/wuplogo.jpg">
         </q-avatar> 
-        <span class="text-h5 text-bold q-ml-md"> Wesleyan University-Philippines  </span>
+        <span class="text-h5 text-bold q-ml-md q-mr-md"> Wesleyan University-Philippines  </span>
+        <img src="/imgs/mhalogo.png" style="width: 2.5%;">
         <q-space />
         <!-- contact sections -->
 
@@ -28,16 +29,16 @@
       </q-toolbar>
       <q-toolbar class="bg-green-10" inset>
         <q-tabs v-model="menuSelected">
-          <q-tab name="home" label="Home" />
-          <q-tab name="about" label="About" />
-          <q-tab name="classes" label="Classes" />
+          <q-route-tab to="/" name="home" label="Home" />
+          <q-route-tab to="about" name="about" label="About Us" />
+          <q-tab name="courses" label="Courses" />
           <q-tab name="teacher" label="Teachers" />
-          <q-tab name="contact" label="Contact" />
         </q-tabs>
         <q-space />
 
         <q-btn 
           flat
+          to="admin"
           color="white"
           label="Login" 
         />
@@ -46,12 +47,17 @@
 
 
 
-    <q-page-container class="bg-red-10 text-white">
+    <q-page-container class="customBG text-white">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
+<style scoped>
+.customBG{
+  background: rgb(227,0,0);
+  background: linear-gradient(207deg, rgba(227,0,0,1) 0%, rgba(105,191,54,1) 100%);
+}
+</style>
 <script>
 import { LocalStorage, SessionStorage } from 'quasar'
 import jwt_decode from 'jwt-decode'
@@ -67,19 +73,19 @@ export default defineComponent({
           icon: 'contact_phone',
           iconColor: 'orange',
           title: 'Call',
-          value: '(0987) 654 3214',
+          value: '(044) 463 2162',
         },
         {
           icon: 'schedule',
           iconColor: 'blue',
           title: 'Working Time',
-          value: 'Mon - Fri 7:00 AM - 6:00 PM',
+          value: 'Mon - Fri 8:00 AM - 7:00 PM',
         },
         {
           icon: 'location_on',
           iconColor: 'red',
           title: 'Address',
-          value: 'Lorem Ipsum Address Sample Test',
+          value: 'Mabini Extension, Cabanatuan City, Philippines',
         },
       ]
     }

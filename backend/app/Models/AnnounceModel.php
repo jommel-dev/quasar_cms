@@ -14,7 +14,7 @@ class AnnounceModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['subject', 'tags', 'title', 'description', 'createdBy', 'createdDate','status'];
+    protected $allowedFields = ['subject', 'tags', 'title', 'description', 'createdBy', 'createdDate','status', 'type'];
 
     protected $useTimestamps = false;
     // protected $createdField  = 'createdDate';

@@ -128,8 +128,8 @@ export default{
 
         async postAnnouncement(){
             let compoDetails = this.$refs.regForm;
-            console.log(compoDetails)
             compoDetails.form.tags = compoDetails.form.tags.split(',')
+            compoDetails.form.type = compoDetails.form.subject.type
             compoDetails.form.createdBy = this.user.fullName
 
             let vm = this;

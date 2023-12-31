@@ -120,6 +120,50 @@ class Announcement extends BaseController
         $list = [];
         $where = [
             "status" => 1,
+            "type" => 1,
+        ];
+        // $list['list'] = $this->userModel->getAllUserInfo($where);
+        $query = $this->announceModel->getAllAnnouncement($where);
+        foreach ($query as $key => $value) {
+            $list['list'][$key] = [
+                "id" => $value->id,
+                "subject" => json_decode($value->subject),
+                "tags" => json_decode($value->tags),
+                "title" =>  $value->title,
+                "content" =>  $value->description,
+                "createdBy" =>  $value->createdBy,
+                "createdDate" =>  $value->createdDate,
+                "image" =>  '/imgs/cardHeading.png',
+                
+            ];
+        }
+        
+        if($list){
+            return $this->response
+                    ->setStatusCode(200)
+                    ->setContentType('application/json')
+                    ->setBody(json_encode($list));
+        } else {
+            $response = [
+                'title' => 'Fetch Failed!',
+                'message' => 'No Data Found'
+            ];
+ 
+            return $this->response
+                    ->setStatusCode(404)
+                    ->setContentType('application/json')
+                    ->setBody(json_encode($response));
+        }
+        
+    }
+    public function getProgramListPublic(){
+        //Get API Request Data from NuxtJs
+        $data = $this->request->getJSON(); 
+        
+        $list = [];
+        $where = [
+            "status" => 1,
+            "type" => 2,
         ];
         // $list['list'] = $this->userModel->getAllUserInfo($where);
         $query = $this->announceModel->getAllAnnouncement($where);

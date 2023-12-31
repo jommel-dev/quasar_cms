@@ -124,20 +124,15 @@
     <div class="row q-mb-xl" style="height: 60vh;">
       <div class="col col-md-2"></div>
       <div class="col col-xs-12 col-sm-12 col-md-4 flex items-center" style="z-index:999;">
-        <span class="text-h2 text-bold">Find your <span class="text-orange">Course!</span></span>
+        <span class="text-h2 text-bold"><span class="text-orange">Course</span> Delivery Method</span>
         <span class="text-subtitle1">
-          Mauris malesuada enim eget blandit gravida. Duis hendrerit cursus turpis, id mollis est rutrum nec. Sed interdum nisi id libero tincidunt, sit amet vestibulum tortor porttitor. Cras ligula lacus, ullamcorper sed
+          Courses will be offered on flexible learning system. This means that each course will have synchronous
+          and asynchronous learning activities throughout the week. Synchronous sessions may be physical or
+          virtual (depending on the circumstances). Attendance is checked during synchronous sessions.
+          Asynchronous learning activities may include doing assigned readings, writing papers, taking quizzes,
+          joining online forum and discussions, performing on-site requirements, and other learning experiences
+          assigned by the professor.
         </span>
-        <q-list>
-          <q-item>
-            <q-item-section top avatar>
-              <q-icon name="contact_phone" color="orange" size="xl" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label class="text-h5 text-bold">(0929) 1234 678</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
 
         <q-input rounded outlined sta ck-label v-model="text" placeholder="Search for course" style="width: 100%;"/>
       </div>
@@ -147,16 +142,76 @@
       
     </div>
 
+    <!-- Programs -->
+    <div class="row q-mt-xl">
+      <div class="col col-md-2 flex items-center"></div>
+      <div class="col col-xs-12 col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col col-xs-12 col-sm-12 col-md-12 q-mb-lg flex">
+            <span class="text-h4 text-bold">Programs</span><q-space />
+            <q-btn 
+              flat
+              color="white"
+              label="More"
+              icon-right="arrow_right_alt"
+            />
+          </div>
+          <div
+            v-for="(item, index) in programList"
+            :key="index"
+            class="col col-xs-12 col-sm-12 col-md-4 q-pa-lg"
+          >
+            <q-card class="my-card" flat bordered>
+              <q-img :src="item.image" />
+
+              <q-card-section>
+                <q-chip 
+                  color="primary" 
+                  text-color="white" 
+                  :icon="item.subject.icon"
+                  class="absolute"
+                  style="top: 0; right: 12px; transform: translateY(-50%);"
+                >
+                  {{item.subject.label}}
+                </q-chip>
+                <div class="row no-wrap items-center">
+                  <div class="col text-h6 text-black ellipsis">
+                    {{item.title}}
+                  </div>
+                </div>
+              </q-card-section>
+
+              <q-card-section class="q-pt-none">
+                <div class="text-subtitle1 text-black ellipsis" v-html="item.content"></div>
+                <div class="text-caption text-grey">
+                  {{`By ${item.createdBy}`}}・{{item.tags.join(', ')}}
+                </div>
+                <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
+                  <q-icon name="event" /> {{item.createdDate}}
+                </div>
+              </q-card-section>
+
+              <q-card-actions>
+                <q-btn style="width: 100px;" outline rounded color="primary" label="Read" size="sm" />
+              </q-card-actions>
+            </q-card>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-2 flex items-center"></div>
+    </div>
+
+
     <!-- Contact Us -->
     
     <!-- Footer -->
-    <div class="row footerBackground bg-green-10 text-white" style="z-index:999;">
+    <!-- <div class="row footerBackground bg-green-10 text-white" style="z-index:999;">
       <div class="col col-md-2"></div>
       <div class="col col-xs-12 col-sm-12 col-md-8">
         footer
       </div>
       <div class="col col-md-2"></div>
-    </div>
+    </div> -->
   </q-page>
 </template>
 
@@ -198,48 +253,12 @@ export default defineComponent({
         },
       ],
       announcements: [],
-      classes: [
-        {
-          image: 'https://cdn.quasar.dev/img/chicken-salad.jpg',
-          subject: {
-            icon: 'notification_important',
-            label: 'Programming'
-          },
-          createdDate: '12/16/2023',
-          createdBy: 'Admin',
-          tag: ['student', 'school'],
-          title: 'Programming Seminar',
-          content: 'Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet',
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/chicken-salad.jpg',
-          subject: {
-            icon: 'code',
-            label: 'Programming'
-          },
-          createdDate: '12/16/2023',
-          createdBy: 'Admin',
-          tag: ['student', 'school'],
-          title: 'Programming Seminar',
-          content: 'Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet',
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/chicken-salad.jpg',
-          subject: {
-            icon: 'code',
-            label: 'Programming'
-          },
-          createdDate: '12/16/2023',
-          createdBy: 'Admin',
-          tag: ['student', 'school'],
-          title: 'Programming Seminar',
-          content: 'Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet',
-        },
-      ],
+      programList: [],
     }
   },
   created(){
     this.getAnnouncements();
+    this.getProgramList();
   },
   methods:{
     async getAnnouncements(){
@@ -250,6 +269,25 @@ export default defineComponent({
 
           if(!data.error){
             this.announcements = response.status < 300 ? data.list : [];
+          } else {
+              this.$q.notify({
+                  color: 'negative',
+                  position: 'top-right',
+                  title:data.title,
+                  message: this.$t(`errors.${data.error}`),
+                  icon: 'report_problem'
+              })
+          }
+      });
+    },
+    async getProgramList(){
+      let vm = this;
+      
+      api.get('program/public/getList').then((response)=>{
+          let data = {...response.data}
+
+          if(!data.error){
+            this.programList = response.status < 300 ? data.list : [];
           } else {
               this.$q.notify({
                   color: 'negative',
